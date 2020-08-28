@@ -4,6 +4,7 @@
   "private": true,
   "mode": "development",
   "scripts": {
+    "start": "react-scripts start",
     "start-react": "react-scripts start",
     "start-flask": "flask run --no-debugger",
     "start-next": "next start -p $PORT",
