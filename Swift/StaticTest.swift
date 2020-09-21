@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import AVFoundation
-import TensorFlowLiteC
+import TensorFlowLite
 
 // TODO: - order of things:
 /**
@@ -28,8 +28,9 @@ private func Logger(text: String) -> String {
     return text
 }
 
-private func getLocalWav(wavName: String) -> Array<Any> {
+private var intrep = TfLiteInterpreter
 
+private func getLocalWav(wavName: String) -> Array<Any> {
     let url = Bundle.main.url(forResource: wavName, withExtension: "wav")
 
     // use Apple's AVFoundation to import the audio:
@@ -54,11 +55,20 @@ private func getLocalWav(wavName: String) -> Array<Any> {
 
     // can print the array to check if values are as they should be:
     // _ = Logger(text: wavformArray.description)
+    // Copy the RGB data to the input `Tensor`.
+    try TfLiteInterpreter.copy(rgbData, toInputAt: 0)
+
+// Run inference by invoking the `Interpreter`.
+    let startDate = Date()
+    try interpreter.invoke()
+    let len = 16000
+    var audio = [Float](repeating: Float(1.0), count: len)
+    let audioBuffer = Data(bytes: &audio, count: audio.count * MemoryLayout<Float>.stride)
+    try TfLiteInterpreter.copy(audioBuffer, toInputAt: 0)
 
     return wavformArray
 
 }
-
 struct StaticView: View {
 
     // `FullSongRecording` has is a static, bundled .wav file

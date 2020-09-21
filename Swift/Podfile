@@ -1,8 +1,5 @@
-
-platform :ios, '14.0'
-
-target 'tmpui.1.1' do
-    use_frameworks!
-    pod 'TensorFlowLiteSwift',  '~> 0.0.1-nightly'
-    pod 'TensorFlowLiteSelectTfOps', '~> 0.0.1-nightly'
+platform :ios, '12.0'
+target 'tmpui-tfl' do
+  use_frameworks!
+  pod 'TensorFlowLiteSwift'
 end
