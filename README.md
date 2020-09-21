@@ -90,7 +90,7 @@ npm run-script ios-native
 
 ### Swift Native:
 
-- ***Still glueing together some .xcconfig schemes, hang tight***    
+- ***Still gluing together some .xcconfig schemes, hang tight***    
 
 
 - - -
@@ -178,6 +178,13 @@ sudo chmod +x scripts/remove_env.sh && ./scripts/remove_env.sh
 
 
 ### *Additional bits:*    
+
+- any notes on importing tflite in python3
+- looking forward to seeing the web annotator, would love to incorporate this as a game --> native app
+- thoughts on drumming up enthusiasm for open source / hacktoberfest?
+  - hardare?
+- any merlin apis or data sets?
+
 
 - Looking for any existing eBird / Merlin logic or an api we can employ right off the bat for ruling out species based on location & date? (even just eBird's "rare" label?)        
 - Angling toward / hybrid Record --> Classify --> Annotate --> generate TFRecord demo
