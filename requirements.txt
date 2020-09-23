@@ -6,7 +6,7 @@ Flask==1.1.1  # sticking with 1.1.1 for now :(
 # tensorflow select ops seem to usually work better with the nightly builds
 # tf-nightly
 tensorflow~=2.3.0
-librosa~=0.8.0
+librosa==-0.7.2
 wheel~=0.35.1
 cryptography~=3.1
 lxml~=4.5.2
@@ -14,5 +14,3 @@ setuptools~=50.3.0
 keyring~=18.0.1
 numpy~=1.18.2
 pip~=20.2.3
-SoundFile
-pysoundfile
