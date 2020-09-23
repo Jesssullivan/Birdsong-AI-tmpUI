@@ -34,7 +34,7 @@ let slider : any = null;
 
 const MODEL_URL = 'models/audio/model.json';
 const LABELS_URL = 'models/audio/labels.json';
-const patchWindowSeconds = 1.0; // We'd like to process a minimum of 1 second of audio
+const patchWindowSeconds = 3.0; // We'd like to process > a second of audio, perhaps at lteast 3
 
 const merlinAudio = new audio_model.MerlinAudioModel(LABELS_URL, MODEL_URL);
 

@@ -1,0 +1,29 @@
+include header
+
+br
+br
+
+div(id="content-wrapper" class="mui--text-center")
+    div(class="mui--appbar-height")
+    br
+    br
+    h5 Getting different results on different devices?
+    br
+    h6 Check this device's WebGL precision:
+    button(id=webglButton class="mui-btn mui-btn--raised") Get Precision
+    br
+    div(id="glSupportHolder")
+    br
+    h5 Compare devices with the test waveform below:
+    button#{testButton}(class="mui-btn mui-btn--raised") Classify Test Waveform
+    <br
+    <br
+    div#{specImageHolder}
+    br
+    div#{specSampleHolder}
+    b
+    div#{specCropHolder}
+    br
+    br
+    script src="./webgl_float_test_bundle.js"
+

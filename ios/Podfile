@@ -4,6 +4,10 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '10.0'
 
 target 'tmpui' do
+
+  # pod 'TensorFlowLiteSwift', '~> 0.0.1-nightly'
+  # pod 'TensorFlowLiteSelectTfOps', '~> 0.0.1-nightly'
+
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
@@ -20,15 +24,6 @@ target 'tmpui' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
-  end
-end
-
-target 'tmpui-tvOS' do
-  # Pods for tmpui-tvOS
-
-  target 'tmpui-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end
 
