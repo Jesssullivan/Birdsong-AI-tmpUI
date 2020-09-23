@@ -8,7 +8,11 @@ class Classifier(object):
 
     usrid = new_client()
     usr_dir = os.path.join(inpath, usrid)
-    os.mkdir(usr_dir)
+
+    try:
+        os.mkdir(usr_dir)
+    except:
+        pass
 
     @classmethod
     def prepare_class_logger(cls):
