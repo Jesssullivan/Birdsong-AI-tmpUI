@@ -6,7 +6,6 @@ import subprocess
 import threading
 import numpy as np
 import json
-import librosa
 import glob
 from flask import Flask, request, flash, redirect, jsonify
 

@@ -1,8 +1,8 @@
 from config import *
 import tensorflow as tf
+import librosa
 
 # serverside classification --> json endpoint
-
 
 class Classifier(object):
 
