@@ -25,6 +25,7 @@ class Classifier(object):
             subprocess.Popen(str('mkdir ' + cls.usr_dir),
                              shell=True,
                              executable='/bin/bash')
+
     @classmethod
     def classify_proc(cls):
         # thanks Grant!
@@ -94,7 +95,7 @@ class Classifier(object):
     @classmethod
     def main(cls):
 
-        # cls.prepare_class_logger()
+        cls.prepare_proc()
         uploader(cls.usr_dir)
 
         # after upload:
