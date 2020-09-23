@@ -9,7 +9,6 @@ import json
 import librosa
 import glob
 from flask import Flask, request, flash, redirect, jsonify
-# local modules- some environments may require a `touch __init__.py`
 
 
 """

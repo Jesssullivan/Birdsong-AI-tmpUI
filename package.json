@@ -10,7 +10,7 @@
     "clean-web-bundles": "find demos/ -name \"*_bundle.js\" -print -delete",
     "clean-web-renders": "find demos/ -name \"*_render.html\" -print -delete",
     "clean-web-all": "chmod u+x scripts/clean.sh && ./scripts/clean.sh",
-    "start": "react-native start",
+    "start": "flask run",
     "test": "jest",
     "lint": "eslint ."
   },
