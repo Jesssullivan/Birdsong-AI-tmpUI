@@ -4,18 +4,14 @@ import librosa
 
 # serverside classification --> json endpoint
 
+
 class Classifier(object):
 
     usrid = new_client()
     usr_dir = os.path.join(inpath, usrid)
 
-    try:
-        os.mkdir(usr_dir)
-    except:
-        pass
-
     @classmethod
-    def prepare_class_logger(cls):
+    def prepare_proc(cls):
         # a log file per live user?
         if logger:
             logfile = os.path.join(cls.usr_dir, 'logs.txt')
@@ -25,6 +21,10 @@ class Classifier(object):
                                  executable='/bin/bash',
                                  encoding='utf8')
 
+        if not os.path.exists(cls.usr_dir):
+            subprocess.Popen(str('mkdir ' + cls.usr_dir),
+                             shell=True,
+                             executable='/bin/bash')
     @classmethod
     def classify_proc(cls):
         # thanks Grant!
@@ -98,8 +98,11 @@ class Classifier(object):
         uploader(cls.usr_dir)
 
         # after upload:
-        if len(os.listdir(cls.usr_dir)) > 0:
-            return cls.classify_proc()
+        try:
+            if len(os.listdir(cls.usr_dir)) > 0:
+                return cls.classify_proc()
+        except:
+            pass
 
         return app.send_static_file('uploader.html' + ext)
 
