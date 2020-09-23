@@ -62,4 +62,6 @@ if prerender:
     # configure this stuff in ./config.py
     Render.render()
 
-app.run(host=hosturl, port=os.environ.get('PORT', hostport))
+
+if __name__ == "__main__":
+    app.run(host=hosturl, port=os.environ.get('PORT', hostport))
