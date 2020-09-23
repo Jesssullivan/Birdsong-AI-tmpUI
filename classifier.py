@@ -1,4 +1,5 @@
 from config import *
+import tensorflow as tf
 
 # serverside classification --> json endpoint
 

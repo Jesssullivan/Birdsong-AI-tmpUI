@@ -8,7 +8,6 @@ import numpy as np
 import json
 import librosa
 import glob
-import tensorflow as tf
 from flask import Flask, request, flash, redirect, jsonify
 # local modules- some environments may require a `touch __init__.py`
 
