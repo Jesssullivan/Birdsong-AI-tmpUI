@@ -9,22 +9,11 @@ class Classifier(object):
 
     usrid = new_client()
     usr_dir = os.path.join(inpath, usrid)
-
-    @classmethod
-    def prepare_proc(cls):
-        # a log file per live user?
-        if logger:
-            logfile = os.path.join(cls.usr_dir, 'logs.txt')
-            if not os.path.exists(logfile):
-                subprocess.Popen(str('touch ' + logfile),
-                                 shell=True,
-                                 executable='/bin/bash',
-                                 encoding='utf8')
-
-        if not os.path.exists(cls.usr_dir):
-            subprocess.Popen(str('mkdir ' + cls.usr_dir),
-                             shell=True,
-                             executable='/bin/bash')
+    if not os.path.exists(usr_dir):
+        subprocess.Popen(str('mkdir ' + usr_dir),
+                         shell=True,
+                         executable='/bin/bash',
+                         encoding='utf8')
 
     @classmethod
     def classify_proc(cls):
@@ -73,6 +62,7 @@ class Classifier(object):
 
             # Save off the classification scores
             window_outputs.append(output_data)
+
         window_outputs = np.array(window_outputs)
 
         # Take an average over all the windows
@@ -95,15 +85,11 @@ class Classifier(object):
     @classmethod
     def main(cls):
 
-        cls.prepare_proc()
         uploader(cls.usr_dir)
 
         # after upload:
-        try:
-            if len(os.listdir(cls.usr_dir)) > 0:
-                return cls.classify_proc()
-        except:
-            pass
+        if len(os.listdir(cls.usr_dir)) > 0:
+            return cls.classify_proc()
 
         return app.send_static_file('uploader.html' + ext)
 
