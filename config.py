@@ -9,7 +9,6 @@ import json
 import glob
 from flask import Flask, request, flash, redirect, jsonify
 
-<<<<<<< HEAD
 
 """
 default values for web demos.
@@ -26,14 +25,6 @@ prerender = False
 # if `devel == False` prerender definitely also be False:
 #if not devel:
 #    prerender = False
-=======
-# set `devel = False` for deployment
-devel = False
-
-# set `prerender = False` for deployment-
-# renders & bundles should already be generated
-prerender = False
->>>>>>> origin/CI-testing
 
 # port `80` is enforced if devel = False
 devport = 5000
