@@ -16,11 +16,11 @@ default values for web demos.
 
 
 # set `devel = False` for deployment
-devel = True
+devel = False
 
 # set `prerender = False` for deployment-
 # renders & bundles should already be generated
-prerender = True
+prerender = False
 
 # if `devel == False` prerender definitely also be False:
 #if not devel:
