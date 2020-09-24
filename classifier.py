@@ -8,7 +8,7 @@ import librosa
 class Classifier(object):
 
     @classmethod
-    def classify_proc(cls, dir=usr_dir):
+    def classify_proc(cls, dir=''):
         # thanks Grant!
         # Load in the map from integer id to species code
         with open(labels_fp) as f:
