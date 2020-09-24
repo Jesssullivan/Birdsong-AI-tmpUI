@@ -9,7 +9,13 @@ class Classifier(object):
 
     usrid = new_client()
     usr_dir = os.path.join(inpath, usrid)
-    if not os.path.exists(usr_dir):
+    try:
+        if not os.path.exists(usr_dir):
+            subprocess.Popen(str('mkdir ' + usr_dir),
+                         shell=True,
+                         executable='/bin/bash',
+                         encoding='utf8')
+    except:
         subprocess.Popen(str('mkdir ' + usr_dir),
                          shell=True,
                          executable='/bin/bash',
