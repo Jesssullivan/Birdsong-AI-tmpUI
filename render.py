@@ -1,11 +1,11 @@
-import glob
-import subprocess
-from config import ext, header, footer, static
+
+from threading import Thread
+from config import *
 
 
 """
 rendering:
- if we were using a more, err, pythonic templating engine like jade or jinja2,
+ if we were using a templating engine like jade,
  we'd make some additional modifications to the api like so:
     ```
     app.jinja_env.addextension('pyjade.ext.jinja.PyJadeExtension')
@@ -19,7 +19,7 @@ rendering:
 class Render(object):
 
     @staticmethod
-    def _html_render(src_list, f):
+    def _render(src_list, f):
         """
         :param src_list: ordered list of HTML file chunks to render
         :return: void
@@ -38,38 +38,24 @@ class Render(object):
 
     # on launch, check & build renders:
     @classmethod
-    def _html_thread(cls):
+    def _thread(cls, header=header, footer=footer):
+
         # get a list of html files to render:
         html_list = glob.glob(static + '*.html')
 
-        for each in html_list:
-            cls._html_render([header, each, footer], each)
+        def _iter():
+            for each in html_list:
+                cls._render([header, each, footer], each)
+
+        return Thread(target=_iter())
 
     @classmethod
-    def _pug_thread(cls):
+    def render(cls):
+        print('prerendering html...')
 
-        # get a list of pug files to render:
-        pug_list = glob.glob('*.pug')
+        render_thread = cls._thread(header=header, footer=footer)
+        render_thread.start()
 
-        for each in pug_list:
-            renderedf = each.split('.')[0]
-            print(renderedf)
-            cmd = 'pypugjs ' + each + ' ' + static + renderedf + '.html'
-            print('prerender: executing ' + cmd)
-            subprocess.Popen(cmd, shell=True).wait()
-
-    @classmethod
-    def render(cls, pug=False):
-
-        if not pug:
-            print('prerendering html chunks @ ' +
-                  static + 'templates/' + '--> html; \n' +
-                  '(pass `pug=True` to use Pug prerendering')
-
-            cls._html_thread()
-
-        else:
-            print('prerendering Pug --> html;')
-            cls._pug_thread()
-
+        # wait until renders are done:
+        render_thread.join()
         print('...prerendering complete!  \n:)')
