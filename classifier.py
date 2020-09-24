@@ -100,7 +100,7 @@ class Classifier(object):
 
         # after upload:
         if len(os.listdir(usr_dir)) > 0:
-            return cls.classify_proc(usr_dir)
+            return cls.classify_proc(os.path.abspath(usr_dir))
 
         return app.send_static_file('uploader.html' + ext)
 
