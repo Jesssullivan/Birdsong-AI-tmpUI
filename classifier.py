@@ -99,8 +99,18 @@ class Classifier(object):
         uploader(usr_dir)
 
         # after upload:
-        if len(os.listdir(usr_dir)) > 0:
-            return cls.classify_proc(os.path.abspath(usr_dir))
+        try:
+            if not os.path.isdir(usr_dir):
+                raise NotADirectoryError
+            else:
+                if len(os.listdir(os.path.abspath(usr_dir)) )> 0:
+                    return cls.classify_proc(os.path.abspath(usr_dir))
+
+        except NotADirectoryError:
+            subprocess.Popen(str('mkdir ' + usr_dir),
+                             shell=True,
+                             executable='/bin/bash',
+                             encoding='utf8')
 
         return app.send_static_file('uploader.html' + ext)
 
