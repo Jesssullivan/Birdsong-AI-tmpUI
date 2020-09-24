@@ -7,22 +7,8 @@ import librosa
 
 class Classifier(object):
 
-    usrid = new_client()
-    usr_dir = os.path.join(inpath, usrid)
-    try:
-        if not os.path.exists(usr_dir):
-            subprocess.Popen(str('mkdir ' + usr_dir),
-                         shell=True,
-                         executable='/bin/bash',
-                         encoding='utf8')
-    except:
-        subprocess.Popen(str('mkdir ' + usr_dir),
-                         shell=True,
-                         executable='/bin/bash',
-                         encoding='utf8')
-
     @classmethod
-    def classify_proc(cls):
+    def classify_proc(cls, dir=usr_dir):
         # thanks Grant!
         # Load in the map from integer id to species code
         with open(labels_fp) as f:
@@ -37,7 +23,7 @@ class Classifier(object):
         output_details = interpreter.get_output_details()
 
         # Load in an audio file
-        audio_fp = glob.glob(cls.usr_dir + '/*.wav')[0]
+        audio_fp = glob.glob(dir + '/*.wav')[0]
         print(audio_fp)
 
         samples, _ = librosa.load(audio_fp, sr=SAMPLE_RATE, mono=True)
@@ -91,11 +77,25 @@ class Classifier(object):
     @classmethod
     def main(cls):
 
-        uploader(cls.usr_dir)
+        usrid = new_client()
+        usr_dir = os.path.join(inpath, usrid)
+        try:
+            if not os.path.exists(usr_dir):
+                subprocess.Popen(str('mkdir ' + usr_dir),
+                                 shell=True,
+                                 executable='/bin/bash',
+                                 encoding='utf8')
+        except:
+            subprocess.Popen(str('mkdir ' + usr_dir),
+                             shell=True,
+                             executable='/bin/bash',
+                             encoding='utf8')
+
+        uploader(usr_dir)
 
         # after upload:
-        if len(os.listdir(cls.usr_dir)) > 0:
-            return cls.classify_proc()
+        if len(os.listdir(usr_dir)) > 0:
+            return cls.classify_proc(usr_dir)
 
         return app.send_static_file('uploader.html' + ext)
 
