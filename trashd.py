@@ -31,6 +31,11 @@ class Trash(object):
 
     @classmethod
     def truck(cls):
+        if not os.path.exists('uploads'):
+            subprocess.Popen(str('mkdir uploads'),
+                             shell=True,
+                             executable='/bin/bash',
+                             encoding='utf8')
         # start garbage loop as daemon- operating as a child to Flask server:
         init_loop = threading.Thread(target=cls._garbage_loop, daemon=True)
         init_loop.start()

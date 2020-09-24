@@ -79,13 +79,18 @@ class Classifier(object):
 
         usrid = new_client()
         usr_dir = os.path.join(inpath, usrid)
+
         try:
-            if not os.path.exists(usr_dir):
-                subprocess.Popen(str('mkdir ' + usr_dir),
+            if not os.path.exists('uploads'):
+                subprocess.Popen(str('mkdir uploads'),
                                  shell=True,
                                  executable='/bin/bash',
                                  encoding='utf8')
-        except:
+
+            if not os.path.exists(usr_dir):
+                raise NotADirectoryError
+
+        except NotADirectoryError:
             subprocess.Popen(str('mkdir ' + usr_dir),
                              shell=True,
                              executable='/bin/bash',
