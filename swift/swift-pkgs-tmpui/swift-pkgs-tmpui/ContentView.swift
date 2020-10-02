@@ -1,9 +1,17 @@
+//
+//  ContentView.swift
+//
+//  Created by Jess.
+//
+
 import SwiftUI
 import AVKit
 import AVFoundation
 import Accelerate
+import CoreImage
+import UIKit
 
-//MARK: - private
+//MARK: - internal
 
 /// extra verbose logging to console from View & global env
 private func vLog(text: String) -> Void {
@@ -12,12 +20,21 @@ private func vLog(text: String) -> Void {
     print("vLog: " + text)
 }
 
+extension View {
+    func vLog(_ vars: Any...) -> some View {
+        for v in vars {
+            print(v)
+        }
+        return EmptyView()
+    }
+}
+
 /// generate new file names:
 private func newFileName(hLength: Int? = nil, ext:String? = nil) -> String {
 
     // use hour+minute time & hash string to name record file names
     let dFormatter = DateFormatter()
-    dFormatter.dateFormat = "_hh:mma" // "a" prints "pm" or "am"
+    dFormatter.dateFormat = "_hh:mma"
     
     // date string:
     let dString = dFormatter.string(from: Date()) // "12 AM"
@@ -33,57 +50,48 @@ private func newFileName(hLength: Int? = nil, ext:String? = nil) -> String {
     let nExt = ext ?? ".wav";
     
     // return the new file name:
-    // vLog(text: "@newFileName created: " + hString + dString + nExt)
+    vLog(text: "@newFileName created: " + hString + dString + nExt)
     return hString + dString + nExt
     
 }
 
 
-private func getStaticWav(staticName: String?) {
+private func getStaticWavPath(staticName: String? = nil) -> String {
     
-    // default testing .wav file name:
-    var staticFileName = "FullSongRecording.wav";
+    // defaults for static wav file:
+    typealias staticFiles = (name: String, extension: String)
 
-    // file name passed as argument?
-    staticFileName = staticName ?? "FullSongRecording.wav";
-
-    // go get the static file form bundle:
-    if let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last {
-        let fileURL = documentsDirectory.appendingPathComponent(staticFileName)
-        do {
-            // make sure we've actually got the file:
-            if try fileURL.checkResourceIsReachable() {
-                vLog(text: "get staticFileName @ " + fileURL.absoluteString)
-                // we've now got the file, now to parse as a Array:
-                
-                
-            // error handling-
-            } else {
-                vLog(text: "staticFileName @ " + fileURL.absoluteString + "does not exist")
-                do {
-                    vLog(text: "attempting write @ " + fileURL.absoluteString)
-                    try Data().write(to: fileURL)
-                    
-                } catch {
-                    vLog(text: "an write @ " + fileURL.absoluteString + "failed... :(")
-                   }
-               }
-           } catch {
-            vLog(text: "an error happened while checking for the file")
-           }
+    enum defaults {
+        static let recording: staticFiles = (name: "FullSongRecording", extension: "wav")
     }
+    
+    // go get the static wav file :
+    guard let wavPath = Bundle.main.path(
+        forResource: defaults.recording.name,
+        ofType: defaults.recording.extension
+    ) else {
+        vLog(text: "Could not get static file " +
+                defaults.recording.name + " of type " +
+                defaults.recording.name + " ! ")
+        return "Err!"
+    }
+
+    vLog(text: "got static wav file path @ " + wavPath)
+    return wavPath
 }
 
 
 
-func getLocalWavFS(url: URL) -> Array<Any> {
+func getLocalWavFS(str: String) -> Array<Any> {
     
+    let url = URL(string: str)
+   
     // use Apple's AVFoundation to import the audio:
     do {
         
-        let file = try AVAudioFile(forReading: url)
-        // _ = Logger(text: "Received Sample Rate: " + String(file.fileFormat.sampleRate))
-        // _ = Logger(text: "Received Channel Count: " + String(file.fileFormat.channelCount))
+        let file = try AVAudioFile(forReading: url!)
+        vLog(text: "Received Sample Rate: " + String(file.fileFormat.sampleRate))
+        vLog(text: "Received Channel Count: " + String(file.fileFormat.channelCount))
         
         // Immediately unwrap:
         guard let format = AVAudioFormat(
@@ -107,12 +115,28 @@ func getLocalWavFS(url: URL) -> Array<Any> {
     }
 }
 
+func dorp() -> Void {
+    print("Chonky Floof")
+}
+
+struct ContentVwiew: View {
+    var body: some View {
+        Text("Hello, world!")
+            .padding()
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Yuki the chonky seal")
             Text(newFileName())
             Text(newFileName(hLength:22, ext:".veryBig"))
+        }.onAppear {
+            let wavPath = getStaticWavPath()
+
+            //TODO: whoo! this worked, pick up here tommorrow xD
+            _ = getLocalWavFS(str: wavPath)
+            
         }
     }
 }
