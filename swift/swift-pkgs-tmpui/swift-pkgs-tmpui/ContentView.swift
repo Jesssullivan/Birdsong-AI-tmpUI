@@ -127,7 +127,7 @@ struct ContentView: View {
             Spacer(minLength: 30)
             Text("...Testing Ways to Display `AVCaptureSession`:")
             HStack {
-                SpectrogramView()
+                RecordingView()
                 Spacer(minLength: 10)
                 VStreaming.init()
             }
