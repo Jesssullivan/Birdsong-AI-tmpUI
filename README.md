@@ -100,12 +100,18 @@ npm run-script ios-native
     - tflite interpreter (cocoa linker is still wonky as of 10/10/2020)
       - bazel binaries yield identical wonky results :(
 
+
 ```
-# open in xcode:
-open swift/swift-pkgs-tmpui/swift-pkgs-tmpui.xcodeproj
+# install pods:
+cd swift/swift-pkgs-tmpui/ && pod install && cd ../..
+```
+ 
+```
+# open resulting xcode workspace:
+open swift/swift-pkgs-tmpui/swift-pkgs-tmpui.xcworkspace
 ```
 
-- make sure `info.plist` has permissions for microphone access in ```[Key = Privacy -> Microphone]```
+- make sure `info.plist` has permissions for microphone access
 
 
 - **The entrypoint for Swift tests is `./swift/swift-pkgs-tmpui/swift-pkgs-tmpui/swift_pkgs_tmpuiApp.swift`, fiddle @ [`ContentView.swift`](https://github.com/Jesssullivan/tmpUI/blob/master/swift/swift-pkgs-tmpui/swift-pkgs-tmpui/ContentView.swift)**
