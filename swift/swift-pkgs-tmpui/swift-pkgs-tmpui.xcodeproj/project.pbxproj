@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		558CC8D1C711C21EE5FF3A89 /* Pods_swift_pkgs_tmpui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 574F124BC2CCC35F7A28EC93 /* Pods_swift_pkgs_tmpui.framework */; };
 		C8254286252A873100317245 /* CamLivePassThrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8254285252A873100317245 /* CamLivePassThrough.swift */; };
 		C8254295252A8BCE00317245 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8254294252A8BCE00317245 /* ContentView.swift */; };
 		C845EDD925262F7F00F89CB5 /* FullSongRecording.wav in Resources */ = {isa = PBXBuildFile; fileRef = C845EDD825262F7F00F89CB5 /* FullSongRecording.wav */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		345683633031D7E69C724FB2 /* Pods-swift-pkgs-tmpui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-pkgs-tmpui.release.xcconfig"; path = "Target Support Files/Pods-swift-pkgs-tmpui/Pods-swift-pkgs-tmpui.release.xcconfig"; sourceTree = "<group>"; };
+		574F124BC2CCC35F7A28EC93 /* Pods_swift_pkgs_tmpui.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_pkgs_tmpui.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2ABFDC2DED4A92E04AC607C /* Pods-swift-pkgs-tmpui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-pkgs-tmpui.debug.xcconfig"; path = "Target Support Files/Pods-swift-pkgs-tmpui/Pods-swift-pkgs-tmpui.debug.xcconfig"; sourceTree = "<group>"; };
 		C8254285252A873100317245 /* CamLivePassThrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamLivePassThrough.swift; sourceTree = "<group>"; };
 		C8254294252A8BCE00317245 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C845EDD825262F7F00F89CB5 /* FullSongRecording.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = FullSongRecording.wav; sourceTree = "<group>"; };
@@ -37,17 +41,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558CC8D1C711C21EE5FF3A89 /* Pods_swift_pkgs_tmpui.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		89FF262C9AFD4746E8EADA00 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B2ABFDC2DED4A92E04AC607C /* Pods-swift-pkgs-tmpui.debug.xcconfig */,
+				345683633031D7E69C724FB2 /* Pods-swift-pkgs-tmpui.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C886E64725237FAC00B724FF = {
 			isa = PBXGroup;
 			children = (
 				C886E65225237FAC00B724FF /* swift-pkgs-tmpui */,
 				C886E65125237FAC00B724FF /* Products */,
+				89FF262C9AFD4746E8EADA00 /* Pods */,
+				E5029593B7E668C8A665A988 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,6 +101,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E5029593B7E668C8A665A988 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				574F124BC2CCC35F7A28EC93 /* Pods_swift_pkgs_tmpui.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,6 +116,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C886E65F25237FAC00B724FF /* Build configuration list for PBXNativeTarget "swift-pkgs-tmpui" */;
 			buildPhases = (
+				350AB9AD360EEF7625060934 /* [CP] Check Pods Manifest.lock */,
 				C886E64C25237FAC00B724FF /* Sources */,
 				C886E64D25237FAC00B724FF /* Frameworks */,
 				C886E64E25237FAC00B724FF /* Resources */,
@@ -147,6 +173,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		350AB9AD360EEF7625060934 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swift-pkgs-tmpui-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C886E64C25237FAC00B724FF /* Sources */ = {
@@ -284,6 +335,7 @@
 		};
 		C886E66025237FAC00B724FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2ABFDC2DED4A92E04AC607C /* Pods-swift-pkgs-tmpui.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -306,6 +358,7 @@
 		};
 		C886E66125237FAC00B724FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 345683633031D7E69C724FB2 /* Pods-swift-pkgs-tmpui.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
