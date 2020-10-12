@@ -232,6 +232,7 @@ npm run-script sslgen-web-demos
 - [Apple's example spectrogram logic implemented here](https://github.com/Jesssullivan/tmpUI/blob/master/swift/swift-pkgs-tmpui/swift-pkgs-tmpui/AudioSpectrogram.swift#L184) is working well, straightforward enough to modify for ideal mel output
   - Wrapped the [example entry](https://developer.apple.com/documentation/accelerate/visualizing_sound_as_an_audio_spectrogram) to be compliant with SwiftUI, see [`SpectrogramView()`](https://github.com/Jesssullivan/tmpUI/blob/master/swift/swift-pkgs-tmpui/swift-pkgs-tmpui/UIViewUtils.swift)
   - Experimenting with approaches to capturing the live `AVCaptureSession` stream using the [camera](https://github.com/Jesssullivan/tmpUI/blob/master/swift/swift-pkgs-tmpui/swift-pkgs-tmpui/CamLivePassThrough.swift#L37) solely because that already works xD e.g. `videoDeviceInput`
+
 - Read existing PCM / .wav file to `AVAudioFile` [works well](https://github.com/Jesssullivan/tmpUI/blob/master/swift/swift-pkgs-tmpui/swift-pkgs-tmpui/ContentView.swift#L82)
 - etc, etc:
     - Banging out mel spectrogram drawing logic --> Swift;
