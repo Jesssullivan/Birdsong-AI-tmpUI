@@ -1,6 +1,10 @@
 from config import *
 
+<<<<<<< HEAD
 # garbage collector for uploaded files to be classified.
+=======
+# garbage collector for uploaded files for classification.
+>>>>>>> CI-testing
 
 
 class Trash(object):
@@ -16,6 +20,7 @@ class Trash(object):
 
     @classmethod
     def _garbage_loop(cls):
+<<<<<<< HEAD
 
         # this is process is what loops around in the garbage daemon's thread.
         while True:
@@ -31,12 +36,22 @@ class Trash(object):
                 if usr not in live_app_list.keys():
                     live_app_list[usr] = time.time()
 
+=======
+        while True:
+            time.sleep(collection_int)
+            for usr in os.listdir(inpath):
+                if usr not in live_app_list.keys():
+                    live_app_list[usr] = time.time()
+>>>>>>> CI-testing
                 if time.time() - live_app_list[usr] > collection_trash:
                     try:
                         print('removing expired usr directories...')
                         cls._force_dir_rm(os.path.join(inpath, usr))
                         live_app_list.pop(usr)
+<<<<<<< HEAD
 
+=======
+>>>>>>> CI-testing
                     except:
                         print(str('Error while removing expired usr directory:  \n' + usr))
 
@@ -47,7 +62,10 @@ class Trash(object):
                              shell=True,
                              executable='/bin/bash',
                              encoding='utf8')
+<<<<<<< HEAD
 
+=======
+>>>>>>> CI-testing
         # start garbage loop as daemon- operating as a child to Flask server:
         init_loop = threading.Thread(target=cls._garbage_loop, daemon=True)
         init_loop.start()
