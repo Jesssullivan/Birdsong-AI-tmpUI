@@ -3,10 +3,7 @@ from render import Render
 from trashd import Trash
 from classifier import Classifier
 
-from distutils import sysconfig
 
-
-sysconfig.get_config_var("LIBDIR")
 """ routing """
 
 
@@ -16,7 +13,7 @@ def home():
 
 
 @app.route('/crop_dl')
-def crop_4():
+def crop_dl():
     return app.send_static_file('spec_record_crop_dl.html' + ext)
 
 
