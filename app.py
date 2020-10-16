@@ -3,7 +3,10 @@ from render import Render
 from trashd import Trash
 from classifier import Classifier
 
+from distutils import sysconfig
 
+
+sysconfig.get_config_var("LIBDIR")
 """ routing """
 
 
