@@ -8,7 +8,6 @@ mkdir production
 echo "production: copying bundles..."
 find demos/ -name \*_bundle.js  -print -exec cp {} production/ \;
 
-
 echo -e "production: packing done. \n..."
 
 echo "production: copying css..."
