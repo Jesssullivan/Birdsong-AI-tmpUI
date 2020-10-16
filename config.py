@@ -34,7 +34,7 @@ devhost = '127.0.0.1'
 
 # rendered html extension:
 ext = '_render.html'
-static = "./production/"
+static = "./demos/"
 
 # default html chunks:
 header = static + 'templates/header.html'
@@ -108,7 +108,5 @@ if devel:
     hostport = devport
     hosturl = devhost
 else:
-    hostport = devport
-    hosturl = devhost
-#    hostport = 80
-#    hosturl = '0.0.0.0'
+    hostport = 80
+    hosturl = '0.0.0.0'
