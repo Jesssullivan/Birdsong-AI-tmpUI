@@ -34,7 +34,7 @@ devhost = '127.0.0.1'
 
 # rendered html extension:
 ext = '_render.html'
-static = "./production/"
+static = "./demos/"
 
 # default html chunks:
 header = static + 'templates/header.html'
