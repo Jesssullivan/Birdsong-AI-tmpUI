@@ -62,5 +62,3 @@ buck-out/
 
 **/Pods
 **/Podfile.lock
-**/*_render.html
-**/*_bundle.js
