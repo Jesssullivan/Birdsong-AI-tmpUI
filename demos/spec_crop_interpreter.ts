@@ -15,20 +15,23 @@ const mainSection = document.querySelector('.container-fluid') as HTMLDivElement
 let imgCrop = document.createElement('img');
 let imgSpec = document.createElement('img');
 let audioURL: string | Blob;
+let chunks : Blob[] = [];
 /* tslint:enable:prefer-const */
 
 const MODEL_URL = 'models/audio/model.json';
 const LABELS_URL = 'models/audio/labels.json';
 
-let recordedBlobs : Blob;
 let mediaRecorder : MediaRecorder;
 let audioCtx : AudioContext;
 let analyserNode : AnalyserNode;
 let shouldDrawVisualization = false;
 const canvasCtx = canvas.getContext("2d");
-let chunks : Blob[] = [];
 let currentWaveform : Float32Array;
+
+// the cropped sample goes in these:
 let currentWaveformSample : Float32Array;
+let recordedBlobs : Blob;
+
 let handlePositions: any;
 let classifyTextHeader: string = "";
 
@@ -171,7 +174,9 @@ function updateVis() {
     console.log("samplePos1:" + samplePos1);
     console.log("samplePos2:" + samplePos2);
 
+    // update snippet as both FloatArray and BlobPart:
     currentWaveformSample = currentWaveform.slice(samplePos1, samplePos2);
+    recordedBlobs = new Blob([currentWaveformSample], { 'type' : 'audio/ogg; codecs=opus' });
 
     // visualize the cropped sample
     const dbSpec = generateSpectrogram(currentWaveformSample); //audio_utils.dBSpectrogram(audioData.waveform, spec_params);
@@ -412,7 +417,6 @@ recordBtn.onclick = () => {
 
             // we make us a `new Blob` before anything else happens, e.g. `Analyze` or `Download`:
             recordedBlobs = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' }); // 'audio/ogg; codecs=opus'
-            chunks = [];
             audioURL = window.URL.createObjectURL(recordedBlobs);
 
             console.log(audioURL);

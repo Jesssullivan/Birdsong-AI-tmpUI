@@ -13,11 +13,11 @@ import librosa
 
 
 # set `devel = False` for deployment
-devel = Flask
+devel = False
 
 # set `prerender = False` for deployment-
 # renders & bundles should already be generated
-prerender = Flask
+prerender = False
 
 # if `devel == False` prerender definitely also be False:
 # if not devel:
