@@ -127,23 +127,23 @@ webpack --config webpack/es6.demo.config.ts &> $DEMOLOG &
 echo -ne '(##                            (10%)\r'
 
 # relax, and watch this chintzy loading graphic load while webpack runs
-sleep 2
+sleep .75
 echo -ne '(##                            (10%)\r'
-sleep 2
+sleep .75
 echo -ne '(####                         (15%)\r'
-sleep 2
+sleep .75
 echo -ne '(#####                        (20%)\r'
-sleep 2
+sleep .75
 echo -ne '(######                       (25%)\r'
-sleep 2
+sleep .75
 echo -ne '(#######                      (30%)\r'
-sleep 2
+sleep .75
 echo -ne '(########                     (35%)\r'
-sleep 2
+sleep .75
 echo -ne '(#########                    (40%)\r'
-sleep 2
+sleep .75
 echo -ne '(##########                   (45%)\r'
-sleep 2
+sleep .75
 echo -ne '(###########                  (50%)\r'
 
 # wait for initial webpack to finish:
@@ -260,7 +260,7 @@ else
 fi
 
 # just to make sure disk catches up to us:
-sleep 2
+sleep .75
 
 ## launch
 

@@ -15,7 +15,7 @@ const mainSection = document.querySelector('.container-fluid') as HTMLDivElement
 let imgCrop = document.createElement('img');
 let imgSpec = document.createElement('img');
 let audioURL: string | Blob;
-let chunks : Blob[] = [];
+let chunks : any = [];
 /* tslint:enable:prefer-const */
 
 const MODEL_URL = 'models/audio/model.json';
@@ -176,10 +176,20 @@ function updateVis() {
 
     // update snippet as both FloatArray and BlobPart:
     currentWaveformSample = currentWaveform.slice(samplePos1, samplePos2);
-    recordedBlobs = new Blob([currentWaveformSample], { 'type' : 'audio/ogg; codecs=opus' });
+    recordedBlobs = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' }); // 'audio/ogg; codecs=opus'
+    audioURL = window.URL.createObjectURL(recordedBlobs);
+
+    console.log(audioURL);
+    console.log("recorder stopped");
+
+    audio_loader.loadAudioFromURL(audioURL)
+        .then((audioBuffer) => audio_loader.resampleAndMakeMono(audioBuffer, targetSampleRate))
+        .then((audioWaveform) => {
+            currentWaveform = audioWaveform;
+        });
 
     // visualize the cropped sample
-    const dbSpec = generateSpectrogram(currentWaveformSample); //audio_utils.dBSpectrogram(audioData.waveform, spec_params);
+    const dbSpec = generateSpectrogram(currentWaveformSample);
     const cropped_imageURI = spectrogram_utils.dBSpectrogramToImage(dbSpec, topDB);
 
     // create / update cropped visualization

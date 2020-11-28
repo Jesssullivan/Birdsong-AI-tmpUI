@@ -7,8 +7,8 @@ Packing audio annotator...
 
 Hash: 720fa19e88e0a242d1e3
 Version: webpack 4.44.2
-Time: 14785ms
-Built at: 11/27/2020 8:09:36 PM
+Time: 12558ms
+Built at: 11/27/2020 9:12:11 PM
                                  Asset       Size  Chunks             Chunk Names
   ../.built/demos/annotator_audio.d.ts    2.3 KiB          [emitted]  
 ../.built/src/annotation_instance.d.ts  604 bytes          [emitted]  

@@ -7,8 +7,8 @@ Packing photo annotator...
 
 Hash: 4d9959bca378401feee6
 Version: webpack 4.44.2
-Time: 8848ms
-Built at: 11/27/2020 8:09:19 PM
+Time: 9165ms
+Built at: 11/27/2020 9:11:56 PM
                                  Asset       Size  Chunks             Chunk Names
   ../.built/demos/annotator_photo.d.ts  786 bytes          [emitted]  
 ../.built/src/annotation_instance.d.ts  604 bytes          [emitted]  

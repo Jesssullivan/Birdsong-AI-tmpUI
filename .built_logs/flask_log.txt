@@ -1,16 +1,11 @@
-Gtk-Message: 20:09:39.295: Failed to load module "appmenu-gtk-module"
-[11876:11876:1127/200939.650304:ERROR:sandbox_linux.cc(374)] InitializeSandbox() called with multiple threads in process gpu-process.
+Gtk-Message: 21:12:13.252: Failed to load module "appmenu-gtk-module"
+[18972:18972:1127/211213.458041:ERROR:sandbox_linux.cc(374)] InitializeSandbox() called with multiple threads in process gpu-process.
 Fontconfig error: Cannot load default config file
-[11742:11867:1127/200940.637530:ERROR:udev_watcher.cc(97)] Failed to begin udev enumeration.
-[11742:11858:1127/201053.370144:ERROR:zygote_communication_linux.cc(276)] Failed to send GetTerminationStatus message to zygote
-[11742:11742:1127/201053.387220:ERROR:network_service_instance_impl.cc(286)] Network service crashed, restarting service.
-[11742:11742:1127/201053.400570:ERROR:zygote_communication_linux.cc(276)] Failed to send GetTerminationStatus message to zygote
-[11742:11742:1127/201053.429273:ERROR:zygote_communication_linux.cc(276)] Failed to send GetTerminationStatus message to zygote
-[11742:11858:1127/201053.466760:FATAL:gpu_data_manager_impl_private.cc(445)] GPU process isn't usable. Goodbye.
-/2020 20:09:41] "[37mGET /spec_crop_interpreter_bundle.js HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:09:49] "[37mGET /models/audio/labels.json HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:09:50] "[37mGET /models/audio/model.json HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:09:50] "[37mGET /models/audio/group1-shard1of2.bin HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:09:50] "[37mGET /models/audio/group1-shard2of2.bin HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:09:51] "[37mGET /site.webmanifest HTTP/1.1[0m" 200 -
-127.0.0.1 - - [27/Nov/2020 20:10:06] "[36mGET / HTTP/1.1[0m" 304 -
+[18838:18982:1127/211223.411169:ERROR:udev_watcher.cc(97)] Failed to begin udev enumeration.
+[18838:18838:1127/211232.999728:ERROR:zygote_communication_linux.cc(276)] Failed to send GetTerminationStatus message to zygote
+[18838:18956:1127/211233.013645:ERROR:zygote_communication_linux.cc(276)] Failed to send GetTerminationStatus message to zygote
+/spec_crop_interpreter_bundle.js HTTP/1.1[0m" 200 -
+127.0.0.1 - - [27/Nov/2020 21:12:26] "[37mGET /models/audio/labels.json HTTP/1.1[0m" 200 -
+127.0.0.1 - - [27/Nov/2020 21:12:26] "[37mGET /models/audio/model.json HTTP/1.1[0m" 200 -
+127.0.0.1 - - [27/Nov/2020 21:12:26] "[37mGET /models/audio/group1-shard2of2.bin HTTP/1.1[0m" 200 -
+127.0.0.1 - - [27/Nov/2020 21:12:26] "[37mGET /models/audio/group1-shard1of2.bin HTTP/1.1[0m" 200 -
