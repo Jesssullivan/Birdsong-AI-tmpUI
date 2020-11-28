@@ -1,0 +1,117 @@
+
+> tmpui@0.0.3 build-anno-audio /home/jess/git/tmpUI
+> chmod +x scripts/annotator_audio.sh && ./scripts/annotator_audio.sh
+
+
+Packing audio annotator...
+
+Hash: 720fa19e88e0a242d1e3
+Version: webpack 4.44.2
+Time: 13990ms
+Built at: 11/27/2020 7:45:33 PM
+                                 Asset       Size  Chunks             Chunk Names
+  ../.built/demos/annotator_audio.d.ts    2.3 KiB          [emitted]  
+../.built/src/annotation_instance.d.ts  604 bytes          [emitted]  
+ ../.built/src/annotation_sidebar.d.ts  285 bytes          [emitted]  
+     ../.built/src/annotator_tool.d.ts   7.95 KiB          [emitted]  
+../.built/src/audio_loading_utils.d.ts  664 bytes          [emitted]  
+        ../.built/src/audio_model.d.ts  585 bytes          [emitted]  
+        ../.built/src/audio_utils.d.ts   3.79 KiB          [emitted]  
+ ../.built/src/category_selection.d.ts  598 bytes          [emitted]  
+           ../.built/src/defaults.d.ts  208 bytes          [emitted]  
+              ../.built/src/greys.d.ts   53 bytes          [emitted]  
+         ../.built/src/image_info.d.ts  299 bytes          [emitted]  
+              ../.built/src/index.d.ts  443 bytes          [emitted]  
+            ../.built/src/logging.d.ts   1.83 KiB          [emitted]  
+../.built/src/macaulay_asset_info.d.ts  301 bytes          [emitted]  
+  ../.built/src/spectrogram_utils.d.ts   91 bytes          [emitted]  
+           ../.built/src/ui_utils.d.ts  266 bytes          [emitted]  
+             annotator_audio_bundle.js   12.4 MiB    main  [emitted]  main
+Entrypoint main = annotator_audio_bundle.js
+[./demos/annotator_audio.ts] 23.3 KiB {main} [built] [1 error]
+[./node_modules/@tensorflow/tfjs-backend-cpu/dist/index.js] 845 bytes {main} [built]
+[./node_modules/@tensorflow/tfjs-backend-webgl/dist/index.js] 845 bytes {main} [built]
+[./node_modules/@tensorflow/tfjs-converter/dist/index.js] 939 bytes {main} [built]
+[./node_modules/@tensorflow/tfjs-core/dist/index.js] 1.03 KiB {main} [built]
+[./node_modules/@tensorflow/tfjs-data/dist/index.js] 1.12 KiB {main} [built]
+[./node_modules/@tensorflow/tfjs/dist/index.js] 1.74 KiB {main} [built]
+[./node_modules/audio-recorder-polyfill/index.js] 6.58 KiB {main} [built]
+[./node_modules/jquery/dist/jquery.js] 281 KiB {main} [built]
+[./src/audio_loading_utils.ts] 4.04 KiB {main} [built] [1 error]
+[./src/audio_model.ts] 5.3 KiB {main} [built]
+[./src/audio_utils.ts] 17.7 KiB {main} [built]
+[./src/index.ts] 863 bytes {main} [built]
+[./src/spectrogram_utils.ts] 2.43 KiB {main} [built]
+[./src/ui_utils.ts] 2.61 KiB {main} [built] [2 errors]
+    + 986 hidden modules
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(73,5)
+      TS7018: Object literal's property 'quickAccessCategoryIDs' implicitly has an 'any[]' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(555,11)
+      TS7018: Object literal's property ''bbox'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(556,11)
+      TS7018: Object literal's property ''segmentation'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(803,9)
+      TS7031: Binding element 'annotationIndex' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(904,13)
+      TS7018: Object literal's property ''bbox'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1137,21)
+      TS7018: Object literal's property 'bbox' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1138,21)
+      TS7018: Object literal's property 'supercategory' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1139,21)
+      TS7018: Object literal's property 'category_id' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1394,24)
+      TS7006: Parameter 'prevState' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1474,19)
+      TS6133: 'zoom' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1475,19)
+      TS6133: 'center' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1683,15)
+      TS6133: 'annotation' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/audio_loading_utils.ts
+./src/audio_loading_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/audio_loading_utils.ts(9,27)
+      TS7016: Could not find a declaration file for module 'ndarray-resample'. '/home/jess/git/tmpUI/node_modules/ndarray-resample/resample.js' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/ui_utils.ts
+./src/ui_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/ui_utils.ts(55,7)
+      TS7034: Variable 'toastTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+
+ERROR in /home/jess/git/tmpUI/src/ui_utils.ts
+./src/ui_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/ui_utils.ts(68,18)
+      TS7005: Variable 'toastTimeout' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/demos/annotator_audio.ts
+./demos/annotator_audio.ts
+[tsl] ERROR in /home/jess/git/tmpUI/demos/annotator_audio.ts(502,14)
+      TS6133: 'classifyCurrentAnnotations' is declared but its value is never read.
+
+...Done packing audio annotator! 
+

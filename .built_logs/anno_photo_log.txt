@@ -1,0 +1,94 @@
+
+> tmpui@0.0.3 build-anno-photo /home/jess/git/tmpUI
+> chmod +x scripts/annotator_photo.sh && ./scripts/annotator_photo.sh
+
+
+Packing photo annotator...
+
+Hash: 4d9959bca378401feee6
+Version: webpack 4.44.2
+Time: 8640ms
+Built at: 11/27/2020 7:45:17 PM
+                                 Asset       Size  Chunks             Chunk Names
+  ../.built/demos/annotator_photo.d.ts  786 bytes          [emitted]  
+../.built/src/annotation_instance.d.ts  604 bytes          [emitted]  
+ ../.built/src/annotation_sidebar.d.ts  285 bytes          [emitted]  
+     ../.built/src/annotator_tool.d.ts   7.95 KiB          [emitted]  
+../.built/src/audio_loading_utils.d.ts  664 bytes          [emitted]  
+        ../.built/src/audio_model.d.ts  585 bytes          [emitted]  
+        ../.built/src/audio_utils.d.ts   3.79 KiB          [emitted]  
+ ../.built/src/category_selection.d.ts  598 bytes          [emitted]  
+           ../.built/src/defaults.d.ts  208 bytes          [emitted]  
+              ../.built/src/greys.d.ts   53 bytes          [emitted]  
+         ../.built/src/image_info.d.ts  299 bytes          [emitted]  
+              ../.built/src/index.d.ts  443 bytes          [emitted]  
+            ../.built/src/logging.d.ts   1.83 KiB          [emitted]  
+../.built/src/macaulay_asset_info.d.ts  301 bytes          [emitted]  
+  ../.built/src/spectrogram_utils.d.ts   91 bytes          [emitted]  
+           ../.built/src/ui_utils.d.ts  266 bytes          [emitted]  
+             annotator_photo_bundle.js   41.1 KiB    main  [emitted]  main
+Entrypoint main = annotator_photo_bundle.js
+[./demos/annotator_photo.ts] 9.38 KiB {main} [built]
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(73,5)
+      TS7018: Object literal's property 'quickAccessCategoryIDs' implicitly has an 'any[]' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(555,11)
+      TS7018: Object literal's property ''bbox'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(556,11)
+      TS7018: Object literal's property ''segmentation'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(803,9)
+      TS7031: Binding element 'annotationIndex' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(904,13)
+      TS7018: Object literal's property ''bbox'' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1137,21)
+      TS7018: Object literal's property 'bbox' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1138,21)
+      TS7018: Object literal's property 'supercategory' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1139,21)
+      TS7018: Object literal's property 'category_id' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1394,24)
+      TS7006: Parameter 'prevState' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1474,19)
+      TS6133: 'zoom' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1475,19)
+      TS6133: 'center' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx
+[tsl] ERROR in /home/jess/git/tmpUI/src/annotator_tool.tsx(1683,15)
+      TS6133: 'annotation' is declared but its value is never read.
+
+ERROR in /home/jess/git/tmpUI/src/audio_loading_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/audio_loading_utils.ts(9,27)
+      TS7016: Could not find a declaration file for module 'ndarray-resample'. '/home/jess/git/tmpUI/node_modules/ndarray-resample/resample.js' implicitly has an 'any' type.
+
+ERROR in /home/jess/git/tmpUI/src/ui_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/ui_utils.ts(55,7)
+      TS7034: Variable 'toastTimeout' implicitly has type 'any' in some locations where its type cannot be determined.
+
+ERROR in /home/jess/git/tmpUI/src/ui_utils.ts
+[tsl] ERROR in /home/jess/git/tmpUI/src/ui_utils.ts(68,18)
+      TS7005: Variable 'toastTimeout' implicitly has an 'any' type.
+
+...Done packing photo annotator! 
+
