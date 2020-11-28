@@ -12,8 +12,8 @@
  ...development: packing tool...
 Hash: 7d61e607027c7b0224d3
 Version: webpack 4.44.2
-Time: 11298ms
-Built at: 11/27/2020 7:59:37 PM
+Time: 11680ms
+Built at: 11/27/2020 8:09:07 PM
                              Asset       Size  Chunks             Chunk Names
 ../.built/annotation_instance.d.ts  604 bytes          [emitted]  
  ../.built/annotation_sidebar.d.ts  285 bytes          [emitted]  
