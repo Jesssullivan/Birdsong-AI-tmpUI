@@ -389,7 +389,7 @@ const stop_visualize = () => {
 };
 
 const clearCanvas = () => {
-    canvasCtx.fillStyle = 'rgb(58,119,52)';
+    canvasCtx.fillStyle = 'rgb(0,0,0,0)';
     canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
 };
 
