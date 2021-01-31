@@ -7,6 +7,11 @@ const noUiSlider = require('./nouislider');
 
 window.MediaRecorder = require('audio-recorder-polyfill');
 
+// const webClassifyURL = "http://127.0.0.1:5000/classify/select"
+// const webClassifyURL = "http://127.0.0.1:5000/classify/standard"
+// const webClassifyURL = "https://merlinai.herokuapp.com/classify/select"
+const webClassifyURL = "https://merlinai.herokuapp.com/classify/standard"
+
 const recordBtn = document.getElementById("recordButton") as HTMLButtonElement;
 const stopBtn = document.getElementById("stopButton") as HTMLButtonElement;
 const canvas = document.querySelector('.visualizer') as HTMLCanvasElement;
@@ -118,7 +123,7 @@ const handleClassifyWaveform = async() => {
         formData.append('file', snipBlob, 'snippet.wav');
 
         // make the POST:
-        fetch('/classify/standard', {
+        fetch(webClassifyURL, {
         method: 'POST',
         body: formData
         })
