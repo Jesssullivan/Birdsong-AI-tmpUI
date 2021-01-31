@@ -350,7 +350,7 @@ const visualize = (stream : MediaStream) => {
 
         analyserNode.getByteTimeDomainData(dataArray);
 
-        canvasCtx.fillStyle = 'rgb(58,119,52)';
+        canvasCtx.fillStyle = 'rgb(0,0,0,0)';
         canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
         canvasCtx.lineWidth = 2;
         canvasCtx.strokeStyle = 'rgb(0, 0, 0)';
