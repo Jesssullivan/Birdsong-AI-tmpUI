@@ -9,8 +9,8 @@ window.MediaRecorder = require('audio-recorder-polyfill');
 
 // const webClassifyURL = "http://127.0.0.1:5000/classify/select"
 // const webClassifyURL = "http://127.0.0.1:5000/classify/standard"
-// const webClassifyURL = "https://merlinai.herokuapp.com/classify/select"
-const webClassifyURL = "https://merlinai.herokuapp.com/classify/standard";
+const webClassifyURL = "https://merlinai.herokuapp.com/classify/select"
+//const webClassifyURL = "https://merlinai.herokuapp.com/classify/standard";
 
 const recordBtn = document.getElementById("recordButton") as HTMLButtonElement;
 const stopBtn = document.getElementById("stopButton") as HTMLButtonElement;
