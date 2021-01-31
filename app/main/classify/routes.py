@@ -40,7 +40,7 @@ def uploader_std():
         print(results)
         return jsonify(results)
     else:
-        return app.send_static_file('uploaderSelectOps.html')
+        return app.send_static_file('uploaderStandardOps.html')
 
 
 @classify_blueprint.route('/select', methods=['GET', 'POST'])

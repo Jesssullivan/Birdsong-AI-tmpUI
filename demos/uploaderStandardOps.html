@@ -1,4 +1,5 @@
-
+<head>
+    <title>Merlin AI: Standard Ops Classification</title>
     <!-- meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -112,7 +113,6 @@
         }
 
     </style>
-
 </head>
 
 
@@ -131,17 +131,14 @@
    </div>
 </header>
 
-<br/>
-<canvas class="visualizer"  width="1000" height="80px"> visualizer </canvas>
-<br/>
 
-<br/>
+<canvas class="visualizer"  width="900" height="80px"> visualizer </canvas>
+
 <div id="content-wrapper" class="mui--text-center">
-    <div class="mui--appbar-height"></div>
   <br/>
-    <h1>Standard Classification:</h1>
-    <h3>This endpoint classifies audio without the Tensorflow "Select Ops" Library.</h3>
-    <h5>...Upload a .wav file:</h5>
+    <h4>Server Side, Standard TensorFlow Operations:</h4>
+    <h5>This endpoint classifies audio without the Tensorflow "Select Ops" Library.</h5>
+    <h6>...Upload a .wav file:</h6>
   <form method="POST" action="" enctype="multipart/form-data">
     <p><input type="file" name="file"></p>
     <p><input type="submit" value="Submit"></p>

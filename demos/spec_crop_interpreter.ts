@@ -1,8 +1,9 @@
 // spec_crop_interpreter.ts
 
-import {ui_utils, audio_loader, audio_utils, spectrogram_utils, audio_model} from "../src/index";
-const noUiSlider = require('./nouislider');
+import {audio_loader, audio_model, audio_utils, spectrogram_utils, ui_utils, log} from "../src/index";
 import {tf} from '../src';
+
+const noUiSlider = require('./nouislider');
 
 window.MediaRecorder = require('audio-recorder-polyfill');
 
@@ -52,7 +53,7 @@ const useBrowser = () => {
 
     if (capable === true) {
         merlinAudio = new audio_model.MerlinAudioModel(LABELS_URL, MODEL_URL);
-         return true;
+        return true;
     }
     else {
         return false;
@@ -61,6 +62,7 @@ const useBrowser = () => {
 
 const browserUse = useBrowser();
 
+// set classifyTextHeader:
 if (browserUse === false) {
     classifyTextHeader = "Classifications processed on server:";
 } else {
@@ -89,21 +91,41 @@ const handleClassifyWaveform = async() => {
 
     if (browserUse === false) {
 
+        // prepare audio snippet to send to server:
+
+        // start audio context;
+        // only for serverside processing
+        if(!audioCtx) {
+            //@ts-ignore
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new AudioContext();
+        }
+
+        // get slider bounds:
+        const snipArray = updateVis();
+
+        // create, fill buffer:
+        let snipBuffer = audioCtx.createBuffer(1, snipArray.length, targetSampleRate);
+        snipBuffer.copyToChannel(snipArray,0);
+
+        // convert to blob to send to server:
+        let snipBlob = new Blob([audio_utils.bufferToWave(snipBuffer, snipBuffer.length)], { 'type' : 'audio/ogg; codecs=opus' });
+        // name: 'file' is the ID Flask will use to find and parse the POST's `snippet.wav`:
+
         // file is wrapped in `formData` for POST:
         const formData = new FormData();
 
-        // `name: 'file'` is the ID Flask will use to find and parse the POST's `snippet.wav`:
-        formData.append('file', recordedBlobs, 'snippet.wav');
+        formData.append('file', snipBlob, 'snippet.wav');
 
-        // make the POST w/ fetch, no one should be using IE anyway xD:
-        fetch('/uploader_standard', {
+        // make the POST:
+        fetch('/classify/standard', {
         method: 'POST',
         body: formData
         })
         .then(response => {
             response.json().then(data => {
 
-                console.log('received scores!');
+                log('received scores!');
 
                 // zing the received json Object into a sortable Array:
                 let i;
@@ -115,14 +137,19 @@ const handleClassifyWaveform = async() => {
                 // sort the Array by descending value:
                 results = results.sort((a, b) =>  b[1] - a[1]);
 
-                // generate a html list to show the user:
+                // send resulting scores to user as an alert:
+                let resultStr = classifyTextHeader + "\n" + "Scores:";
+
+                // generate a html list to show the user scores too:
                 for (i in results) {
                     const scoreEl = document.createElement('li');
-                    scoreEl.textContent = ' ' + i + ' ' + results[i].join(" ");
+                    scoreEl.textContent = ' ' + results[i].join(" ");
+                    resultStr += "\n" + results[i].join(" ");
                     resultEl.appendChild(scoreEl);
                     sampleHolderEl.prepend(resultEl);
-                    console.log(i + ' ' + results[i]);
+                    log(results[i].join(" "));
                 }
+                alert(resultStr);
             });
         })
         .catch(error => {
@@ -133,14 +160,16 @@ const handleClassifyWaveform = async() => {
         await merlinAudio.averagePredictV3(currentWaveformSample, targetSampleRate)
             // @ts-ignore
             .then(([labels, scores]) => {
-
+                let resultStr = classifyTextHeader + "\n" + "Scores:";
                 for (let i = 0; i < 10; i++) {
                     const scoreEl = document.createElement('li');
                     scoreEl.textContent = labels[i] + " " + scores[i];
                     resultEl.appendChild(scoreEl);
                     sampleHolderEl.prepend(resultEl);
-                    console.log(labels[i] + ' ' + scores[i]);
+                    resultStr += labels[i] + ": " + scores[i] + " \n";
+                    log(labels[i] + ": " + scores[i]);
                 }
+            alert(resultStr);
         });
     }
 };
@@ -158,17 +187,11 @@ const updateVis = () => {
     pos1 += scrollOffset;
     pos2 += scrollOffset;
 
-    console.log("pos1:" + pos1);
-    console.log("pos2:" + pos2);
-
     // Need to go from spectrogram position to waveform sample index
     const hopLengthSamples = Math.round(targetSampleRate * stftHopSeconds);
 
     const samplePos1 = pos1 * hopLengthSamples / timeScale;
     const samplePos2 = pos2 * hopLengthSamples / timeScale;
-
-    console.log("samplePos1:" + samplePos1);
-    console.log("samplePos2:" + samplePos2);
 
     currentWaveformSample = currentWaveform.slice(samplePos1, samplePos2);
 
@@ -403,8 +426,7 @@ recordBtn.onclick = () => {
         mediaRecorder = new MediaRecorder(stream, {mimeType: 'audio/wav'});
 
         mediaRecorder.start();
-        console.log(mediaRecorder.state);
-        console.log("recorder started");
+        log("recorder started");
 
         visualize(stream);
 
@@ -418,8 +440,7 @@ recordBtn.onclick = () => {
             chunks = [];
             audioURL = window.URL.createObjectURL(recordedBlobs);
 
-            console.log(audioURL);
-            console.log("recorder stopped");
+            log("recorder stopped");
 
             audio_loader.loadAudioFromURL(audioURL)
                 .then((audioBuffer) => audio_loader.resampleAndMakeMono(audioBuffer, targetSampleRate))
@@ -450,8 +471,7 @@ recordBtn.onclick = () => {
 stopBtn.onclick = () => {
 
     mediaRecorder.stop();
-    // console.log(mediaRecorder.state);
-    // console.log("recorder stopped");
+
     stop_visualize();
 
     stopBtn.setAttribute('disabled',  'disabled');

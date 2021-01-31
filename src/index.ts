@@ -1,8 +1,10 @@
 /*
  * `index.ts`:
  * Declares named exports.
+ * exports verbose logger.
  */
 const verbose = true;
+
 import * as audio_loader from './audio_loading_utils';
 import * as audio_utils from './audio_utils';
 import * as spectrogram_utils from './spectrogram_utils';

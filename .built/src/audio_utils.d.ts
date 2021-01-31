@@ -36,4 +36,5 @@ export declare const padConstant: (data: Float32Array, padding: number | number[
 export declare const frame: (data: Float32Array, frameLength: number, hopLength: number) => Float32Array[];
 export declare const createMelFilterbank: (params: MelParams) => Float32Array[];
 export declare const hannWindow: (length: number) => Float32Array;
+export declare const bufferToWave: (buf: AudioBuffer, len: number) => Blob;
 export {};
