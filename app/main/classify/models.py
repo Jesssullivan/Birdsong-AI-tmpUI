@@ -5,6 +5,9 @@ from scipy.signal import decimate
 import json
 import numpy as np
 
+MODEL_INPUT_SAMPLE_COUNT = 22050 * 3
+WINDOW_STEP_SAMPLE_COUNT = 44100
+
 
 """ serverside classification """
 
@@ -26,8 +29,8 @@ class Classifier(object):
         input_details = interpreter.get_input_details()
         output_details = interpreter.get_output_details()
 
-        vprint("Waveform Input Shape: %s" % input_details[0]['shape'])
-        vprint("Output shape: %s" % output_details[0]['shape'])
+        print("Waveform Input Shape: %s" % input_details[0]['shape'])
+        print("Output shape: %s" % output_details[0]['shape'])
 
         # Load in an audio file
         audio_fp = glob.glob(dir + '/*.wav')[0]
@@ -37,14 +40,16 @@ class Classifier(object):
 
         # Do we need to pad with zeros?
         if samples.shape[0] < MODEL_INPUT_SAMPLE_COUNT:
-            samples = np.concatenate(
-                [samples, np.zeros([MODEL_INPUT_SAMPLE_COUNT - samples.shape[0]], dtype=np.float32)])
+            samples = np.concatenate([samples, np.zeros([MODEL_INPUT_SAMPLE_COUNT - samples.shape[0]], dtype=np.float32)])
 
+        if samples.shape[0] > MODEL_INPUT_SAMPLE_COUNT:
+            samples = samples[:MODEL_INPUT_SAMPLE_COUNT]
+
+        print(samples.shape[0])
         # How many windows do we have for this sample?
-        num_windows = (samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1
-
+        num_windows = abs((samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1)
         # We'll aggregate the outputs from each window in this list
-        window_outputs = list()
+        window_outputs = []
 
         # Pass each window
         for window_idx in range(num_windows):
@@ -53,8 +58,11 @@ class Classifier(object):
             end_idx = start_idx + MODEL_INPUT_SAMPLE_COUNT
             window_samples = samples[start_idx:end_idx]
 
+            print('window_samples: \n '+ str(window_samples) + " \n ... ")
             # Classify the window
+
             interpreter.set_tensor(input_details[0]['index'], window_samples)
+
             interpreter.invoke()
             output_data = interpreter.get_tensor(output_details[0]['index'])[0]
 
@@ -75,7 +83,7 @@ class Classifier(object):
             label = label_predictions[i]
             score = average_scores[label]
             species_code = label_map[label]
-            vprint("\t%7s %0.3f" % (species_code, score))
+            print("\t%7s %0.3f" % (species_code, score))
             res[str(species_code)] = str(score)
 
         # return results:
