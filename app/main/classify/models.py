@@ -4,7 +4,6 @@ from .config import *
 from scipy.signal import decimate
 import json
 import numpy as np
-import pydub
 
 MODEL_INPUT_SAMPLE_COUNT = 22050 * 3
 WINDOW_STEP_SAMPLE_COUNT = 44100
@@ -33,11 +32,18 @@ class Classifier(object):
         print("Waveform Input Shape: %s" % input_details[0]['shape'])
         print("Output shape: %s" % output_details[0]['shape'])
 
+<<<<<<< HEAD
         # convert mp3 if needed
-        mp3_fp = glob.glob(dir + '/*.mp3')[0]
-        sound = pydub.AudioSegment.from_mp3(mp3_fp)
-        sound.export(dir + "/snippet.wav", format="wav")
+        try:
+            mp3_fp = glob.glob(dir + '/*.mp3')[0]
+            sound = pydub.AudioSegment.from_mp3(mp3_fp)
+            sound.export(dir + "/snippet.wav", format="wav")
+        except:
+            print('no *.mp3 to convert, continuing...')
+            pass
 
+=======
+>>>>>>> parent of 22d87cef... .
         # Load in an audio file
         audio_fp = glob.glob(dir + '/*.wav')[0]
         samples_raw, sr = librosa.load(audio_fp, sr=44100, mono=True)
@@ -50,11 +56,10 @@ class Classifier(object):
 
         if samples.shape[0] > MODEL_INPUT_SAMPLE_COUNT:
             samples = samples[:MODEL_INPUT_SAMPLE_COUNT]
-        samples = samples.astype(np.float32)
 
+        print(samples.shape[0])
         # How many windows do we have for this sample?
-        num_windows = (samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1
-
+        num_windows = abs((samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1)
         # We'll aggregate the outputs from each window in this list
         window_outputs = []
 
@@ -65,8 +70,11 @@ class Classifier(object):
             end_idx = start_idx + MODEL_INPUT_SAMPLE_COUNT
             window_samples = samples[start_idx:end_idx]
 
+            print('window_samples: \n '+ str(window_samples) + " \n ... ")
             # Classify the window
+
             interpreter.set_tensor(input_details[0]['index'], window_samples)
+
             interpreter.invoke()
             output_data = interpreter.get_tensor(output_details[0]['index'])[0]
 
@@ -85,16 +93,9 @@ class Classifier(object):
 
         for i in range(10):
             label = label_predictions[i]
-            try:
-                if float(average_scores[label]) <= .001:
-                    score = "Not This!"
-                    return res
-                else:
-                    score = average_scores[label]
-            except:
-                score = "Not This!"
-                return  res
+            score = average_scores[label]
             species_code = label_map[label]
+            print("\t%7s %0.3f" % (species_code, score))
             res[str(species_code)] = str(score)
 
         # return results:
@@ -222,4 +223,4 @@ class Classifier(object):
                 return redirect(request.url)
             if file:
                 f = request.files['file']
-                f.save(os.path.join(usrpath, f.filename))
+                f.save(os.path.join(usrpath, usrfile))
