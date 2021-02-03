@@ -69,28 +69,25 @@ class Classifier(object):
 
             # Save off the classification scores
             window_outputs.append(output_data)
-
         window_outputs = np.array(window_outputs)
         # Take an average over all the windows
         average_scores = window_outputs.mean(axis=0)
         # Print the predictions
         label_predictions = np.argsort(average_scores)[::-1]
-
         res = {}
-
         for i in range(10):
-
             label = label_predictions[i]
-
             try:
                 if float(average_scores[label]) <= .001:
+                    score = "Not This!"
                     return res
                 else:
                     score = average_scores[label]
             except:
+                score = "Not This!"
                 return res
-
             species_code = label_map[label]
+            print("\t%7s %0.3f" % (species_code, score))
             res[str(species_code)] = str(score)
 
             # return results:
