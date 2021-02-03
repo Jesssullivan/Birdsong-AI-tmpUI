@@ -32,7 +32,6 @@ class Classifier(object):
         print("Waveform Input Shape: %s" % input_details[0]['shape'])
         print("Output shape: %s" % output_details[0]['shape'])
 
-<<<<<<< HEAD
         # convert mp3 if needed
         try:
             mp3_fp = glob.glob(dir + '/*.mp3')[0]
@@ -42,8 +41,6 @@ class Classifier(object):
             print('no *.mp3 to convert, continuing...')
             pass
 
-=======
->>>>>>> parent of 22d87cef... .
         # Load in an audio file
         audio_fp = glob.glob(dir + '/*.wav')[0]
         samples_raw, sr = librosa.load(audio_fp, sr=44100, mono=True)
