@@ -45,6 +45,12 @@ class Classifier(object):
         samples_raw, sr = librosa.load(audio_fp, sr=44100, mono=True)
 
         samples = decimate(samples_raw, q=2)
+        print(str(samples))
+
+        # Do we need to pad with zeros?
+        if samples.shape[0] < MODEL_INPUT_SAMPLE_COUNT:
+            samples = np.concatenate(
+                [samples, np.zeros([MODEL_INPUT_SAMPLE_COUNT - samples.shape[0]], dtype=np.float32)])
 
         if samples.shape[0] > MODEL_INPUT_SAMPLE_COUNT:
             samples = samples[:MODEL_INPUT_SAMPLE_COUNT]
@@ -52,7 +58,11 @@ class Classifier(object):
         samples = samples.astype(np.float32)
 
         # How many windows do we have for this sample?
-        num_windows = (samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1        # We'll aggregate the outputs from each window in this list
+        num_windows = abs((samples.shape[0] - MODEL_INPUT_SAMPLE_COUNT) // WINDOW_STEP_SAMPLE_COUNT + 1)
+
+        # sanity check
+        num_windows = 1 if num_windows < 1 else num_windows
+
         window_outputs = []
 
         # Pass each window
@@ -69,6 +79,7 @@ class Classifier(object):
 
             # Save off the classification scores
             window_outputs.append(output_data)
+
         window_outputs = np.array(window_outputs)
         # Take an average over all the windows
         average_scores = window_outputs.mean(axis=0)
@@ -79,15 +90,13 @@ class Classifier(object):
             label = label_predictions[i]
             try:
                 if float(average_scores[label]) <= .001:
-                    score = "Not This!"
                     return res
                 else:
                     score = average_scores[label]
             except:
-                score = "Not This!"
                 return res
+
             species_code = label_map[label]
-            print("\t%7s %0.3f" % (species_code, score))
             res[str(species_code)] = str(score)
 
             # return results:
