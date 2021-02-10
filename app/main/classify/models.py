@@ -98,12 +98,13 @@ class Classifier(object):
             # Save off the classification scores
             window_outputs.append(output_data)
 
+
         window_outputs = np.array(window_outputs)
         # Take an average over all the windows
         average_scores = window_outputs.mean(axis=0)
         # Print the predictions
         label_predictions = np.argsort(average_scores)[::-1]
-        res = {}
+        res = dict()
         for i in range(10):
             label = label_predictions[i]
             try:
@@ -117,8 +118,12 @@ class Classifier(object):
             species_code = label_map[label]
             res[str(species_code)] = str(score)
 
-            # return results:
+        for x in res:
+            print(x + ": " + res[x])
+            flash(x + ": " + res[x])
+
         return res
+
 
     @staticmethod
     def classify_proc_std(usr_dir):  # thanks to Grant!!!  xD
