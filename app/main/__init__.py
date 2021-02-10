@@ -1,10 +1,10 @@
 from flask import Flask, redirect
-from .tools.tools import JsonResp
 import os
+from .tools.tools import JsonResp
 from .classify.trashd import Trash
 
 # Import Routes
-from .userdb.routes import user_blueprint
+#from .userdb.routes import user_blueprint
 from .annotator.routes import anno_blueprint
 from .tfmodels.routes import tfmodels_blueprint
 from .classify.routes import classify_blueprint
@@ -13,17 +13,22 @@ from .classify.routes import classify_blueprint
 def create_app():
     # Flask Config
     app = Flask(__name__)
+
     app.config.from_pyfile("config/config.cfg")
 
     # set template & static paths:
     app.template_folder = "../../demos/"
     app.static_folder = "../../demos/"
 
-    # Misc Config
+    # upload --> classify config
+    app.config['UPLOAD_EXTENSIONS'] = ['mp3', '.wav', '.WAV', '.wave', '.WAVE']
+    app.config['UPLOAD_PATH'] = 'uploads'
+
+    # misc Config
     os.environ["TZ"] = app.config["TIMEZONE"]
 
     # Register Blueprints
-    app.register_blueprint(user_blueprint, url_prefix="/user")
+    # app.register_blueprint(user_blueprint, url_prefix="/user")
     app.register_blueprint(anno_blueprint, url_prefix="/annotator")
     app.register_blueprint(tfmodels_blueprint, url_prefix="/models")
     app.register_blueprint(classify_blueprint, url_prefix="/classify")

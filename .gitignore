@@ -3,4 +3,4 @@ merlinai_venv
 **/.idea
 .DS_Store
 **/*pycache*
-**/*pyc**
+**/*pyc
