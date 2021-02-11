@@ -65,10 +65,6 @@ def upload():
     if filename != '':
         # we received a file:
         _ext = os.path.splitext(filename)[1]
-               # make sure we can handle this file:
-        if _ext not in app.config['UPLOAD_EXTENSIONS']:
-            return "Cannot classify this audio file! \nThis route handles the following extensions:" +\
-                   app.config['UPLOAD_EXTENSIONS'], 400
 
         # all seems well, save the file:
         uploaded_file.save(os.path.join(usr_dir, filename))
