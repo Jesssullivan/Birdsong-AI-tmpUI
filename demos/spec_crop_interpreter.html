@@ -1,11 +1,12 @@
 <head>
 
-    <title>Merlin AI: WebGL Precision</title>
+    <title>Merlin AI Web Interpreter</title>
 
     <!-- meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+
     <!-- MUI -->
     <script src="//cdn.muicss.com/mui-latest/js/mui.min.js"></script>
     <link href="//cdn.muicss.com/mui-latest/css/mui.min.css" rel="stylesheet" type="text/css" />
@@ -117,11 +118,12 @@
 
 </head>
 
+
 <header>
     <a class="github-fork-ribbon" href="https://github.com/Jesssullivan/tmpui" data-ribbon="Contribute @ GitHub" title="Contribute @ GitHub...">Contribute</a>
    <div class="topnav" >
-       <a href="/classify/server">Interpreter</a>
-       <a class="active" href="/classify/webgl">Precision</a>
+       <a class="active" href="/classify/server">Interpreter</a>
+       <a href="/classify/webgl">Precision</a>
        <a href="/classify/select">Select Ops</a>
        <a href="/classify/standard">Standard Ops</a>
        <a href="/annotator/audio">Annotate: OTF</a>
@@ -130,29 +132,92 @@
        <a href="https://www.transscendsurvival.org/">α wιρ Σ ♥</a>
    </div>
 </header>
+<br/>
+<br/>
+<canvas class="visualizer"  width="1200" height="100px"> visualizer </canvas>
 
-<canvas class="visualizer"  width="1000" height="80px"> visualizer </canvas>
+<div id="content-wrapper" >
+    <script>
+        {
+        var isSafari = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 &&
+               navigator.userAgent &&
+               navigator.userAgent.indexOf('CriOS') == -1 &&
+               navigator.userAgent.indexOf('FxiOS') == -1;
 
-<div id="content-wrapper" class="mui--text-center">
-    <br>
-    <h5> Getting different results on different devices? </h5>
+               console.log(isSafari)
+        if (isSafari === true) {
+            alert("Hey!  When you want to start a new recording on this 🍎 device, please first tap the green `interpreter` button or reload the page.  Thx! -Jess")
+        }
+    }
+    </script>
+
+    <style>
+            /*
+            * Make the leaflet holder long and narrow for the spectrogram.
+            */
+            .leaflet-image-holder{
+                height: 320px!important;
+                width: 1200px!important;
+            }
+
+            /*
+            * The vertical line for the audio position.
+            */
+            .leaflet-image-holder:before {
+                content:"";
+                width:1px;
+                height:100%;
+                display:block;
+                z-index: 1000;
+                left:50%;
+                position:absolute;
+                background-image: linear-gradient(rgb(179, 0, 0), rgb(179, 0, 0));
+                background-size: 1px 100%;
+                background-repeat: no-repeat;
+                background-position: center center;
+            }
+
+            .annotation-instance-category-name{
+                font-size: xx-small;
+            }
+
+            .annotation-instance-supercategory-name{
+                font-size: xx-small;
+            }
+
+        </style>
+
+    <h4 class="benigncenter"> Merlin AI Web: Record, Crop & Classify </h4 >
+
     <br/>
-    <h6> Check this device's WebGL precision: </h6>
-    <button id="webglButton" class="mui-btn mui-btn--raised"> Get Precision </button>
+    <h6 class="benigncenter">Browser Check Disabled </h6 >
     <br/>
-    <div id="glSupportHolder"></div>
+    <div class="benigncenter">
+        <button id="recordButton" class="mui-btn mui-btn--raised">Record Song</button>
+    </div>
     <br/>
-    <h5> Compare devices with the test waveform below: </h5>
-    <button id="testButton" class="mui-btn mui-btn--raised"> Classify Test Waveform </button>
+      <div class="benigncenter">
+        <button id="fileSelectorButton" class="mui-btn mui-btn--raised">Select Audio File</button>
+    </div>
+    <br/>
+    <div class="benigncenter">
+        <button id="stopButton" class="mui-btn mui-btn--raised" disabled="" title="Stop">Stop</button>
+    </div>
+    <br/>
     <br/>
     <br/>
     <div id="specImageHolder"></div>
     <br/>
-    <div id="specSampleHolder"></div>
+    <div id="specSliderHolder"></div>
     <br/>
-    <div id="specCropHolder"></div>
+    <div id="specAnalyzeButtonHolder" class="benigncenter"></div>
+    <div id="downloadButtonHolder" class="benigncenter"></div>
+    <div id="downloadSpecButtonHolder" class="benigncenter"></div>
     <br/>
+    <div id="specSampleHolder" class="benigncenter"></div>
     <br/>
-</div>
-
-<script src="./webgl_float_test_bundle.js"></script>
+    <div id="specCropHolder" class="benigncenter" hidden></div>
+    <br>
+    <script src="./spec_crop_interpreter_bundle.js"></script>
+    </div>
+<br>
